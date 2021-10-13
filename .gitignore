@@ -5,3 +5,5 @@ waymo_data/
 training/
 Pictures/
 core
+experiments/experiment*
+*.mp4
