@@ -16,14 +16,18 @@ def split(data_dir):
     args:
         - data_dir [str]: data directory, /mnt/data
     """
+
+    # list of tuple (destination directory name, ratio of total files)
     dest_ratios = [("train", 0.7), ("validation", 0.2), ("test", 0.1)]
 
+    # Collect all the tfrecord files and randomly shuffle them
     tfRecordFiles = []
     for tfRecordFile in glob.glob(os.path.join(data_dir,'*.tfrecord')):
         tfRecordFiles.append(tfRecordFile)
 
     random.shuffle(tfRecordFiles)
 
+    # Move the designated portion of files into their destination directories
     total_count = len(tfRecordFiles)
     cur_ratio = 0.0
     for dest_dir_name, ratio in dest_ratios:
